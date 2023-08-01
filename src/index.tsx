@@ -8,6 +8,7 @@ import store from './store'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import constants from "./constants";
 import './index.css';
+import PurchaseV2 from './components/uxcore/purchasev2';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,6 +19,7 @@ root.render(
   <GoogleOAuthProvider clientId={constants.GOOGLE_CLIENT_ID}>
     <React.StrictMode>
       <Provider store={store}>
+        {/* <PurchaseV2 /> */}
         <App />
       </Provider>
     </React.StrictMode>

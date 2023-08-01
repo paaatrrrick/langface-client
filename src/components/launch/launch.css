@@ -76,7 +76,7 @@
     color: #fff;
 }
 
-.launch h2{
+.howItWorks h2{
     font-size: 40px;
     line-height: 60px;
     text-align: center;
@@ -227,34 +227,6 @@
 
 .treesSection{
     height: 500px;
-}
-
-.launch-payments .PurchaseScreen-card:first-of-type{
-    border-color: white !important;
-}
-
-.launch-payments .PurchaseScreen-card:last-of-type{
-    border-color: white !important;
-}
-
-.launch-payments .PurchaseScreen h1{
-    color: white;
-}
-
-.launch-payments .PurchaseScreen h3{
-    color: white;
-}
-
-.launch-payments .PurchaseScreen h4{
-    color: white;
-}
-
-.launch-payments .PurchaseScreen h6{
-    color: white;
-}
-
-.launch-payments .PurchaseScreen p{
-    color: white !important;
 }
 
 @media only screen and (max-width: 900px) {

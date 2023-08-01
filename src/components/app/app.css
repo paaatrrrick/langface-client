@@ -8,7 +8,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans;
-    color: var(--mainDark);
     transition: all 0.3s ease-in-out;
 }
 
@@ -187,6 +186,10 @@ img {
     justify-content: flex-start;
 }
 
+.App-right-section.template-purchase .body{
+    width: min(100%, 1400px);
+}
+
 .App-right-section .launch-body{
     width: 100%;
     height: 100%;
@@ -209,37 +212,37 @@ img {
     height: 100%;
 }
 
-.body h1{
+.Tutorial h1, .Home h1{
     font-size: 32px;
     font-weight: 600;
     color: var(--mainDark);
 }
 
-.body h3{
+.Tutorial h3, .Home h3{
     font-size: 14px;
     font-weight: 700;
     color: var(--mainDark);
 }
 
-.body h4 {
+.Tutorial h4, .Home h4 {
     font-size: 16px;
     font-weight: 500;
     color: var(--lightDark);
 }
 
-.body h6{
+.Tutorial h6, .Home h6{
     font-size: 16px;
     font-weight: 300;
     color: var(--lightDark);
 }
 
-.body p{
+.Tutorial p, .Home p{
     font-size: 14px;
     font-weight: 400;
     color: var(--lightDark);
 }
 
-.body a{
+.Tutorial a, .Home a{
     font-size: 14px;
     font-weight: 400;
     color: var(--lightDark);

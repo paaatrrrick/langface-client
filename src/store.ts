@@ -211,7 +211,7 @@ const slice = createSlice({
           includeAIImages: includeAIImages || false,
           settingUp: !businessData.name || !businessData.product,
           dropDownTitle: "New Agent",
-          demo: true,
+          demo: false,
         }
         blogMap[_id] = tempBlog;
       }

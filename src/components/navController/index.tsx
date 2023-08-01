@@ -126,7 +126,7 @@ const NavController : React.FC<NavControllerProps> = ({launch, close, isAuthoriz
                     </div>
                     <div id="navControllerPurchase" onClick={payment}>
                             <img src={RobotSvg} />
-                            <h6 className='text-20'>Hire Agent</h6>
+                            <h6 className='text-20px'>Hire Agent</h6>
                     </div>
                 <Auth launch={launch}/>
             </div>

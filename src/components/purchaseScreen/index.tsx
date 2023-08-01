@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setBannerMessage } from "../../store";
 import constants from "../../constants";
 import { actions, RootState } from '../../store';
-import PurchaseV2 from "../uxcore/purchasev2";
+import { CheckIcon } from '@heroicons/react/20/solid';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBdOHXmq235jFOtiAg7KtnXE6zriN8r6xU",
@@ -27,9 +28,17 @@ interface PurchaseScreenProps {
     tryDemo?: boolean;
     openDemo?: () => void;
     launch: () => Promise<void>;
+    dark?: boolean;
 }
 
-const PurchaseScreen = ({ tryDemo, openDemo, launch } : PurchaseScreenProps) => {
+
+
+
+function classNames(...classes : any[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
+const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProps) => {
     const isLoggedIn = useSelector((state : RootState) => state.main.isLoggedIn);
     const dispatch = useDispatch();
 
@@ -58,6 +67,17 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch } : PurchaseScreenProps) => 
         launch();
         return true;
     };
+
+    const enterpriseLetsChat = () => {
+        const recipient = "patrick@langface.ai"
+        const subject = encodeURIComponent("Hello 👋");
+        const body = encodeURIComponent(
+          "Hey Patrick,\n\nI'd love to hear more about SEO with langface.ai. What's your availability this week?"
+        );
+        const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        window.open(mailtoLink, "_blank");
+    }
+
     const payment = async () => {
         if (!isLoggedIn) {
             const google = await handleGoogle();
@@ -72,166 +92,128 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch } : PurchaseScreenProps) => 
             dispatch(actions.setCurrentView("home"));
         }
     };
-    
-    return (<div className="PurchaseScreen">
-        <div className="w-100 column align-center justify-center shrinkwidth">
-            <h1 className="text-4xl mb-2 font-semibold">Supercharge your web traffic</h1>
-            <h6 style={
-                {
-                    marginTop: '10px',
-                    fontSize: '14px'
-                }
-            }>Hire an AI agent that works autonomously to grow your blog</h6>
-        </div>
-        {tryDemo && <button className='launch-purpleButton' onClick={openDemo}>Try the out the demo</button>}
-        <div className="row w-100 align-center justify-center"
-            style={
-                {marginTop: '60px'}
-        }>
-            <div className="PurchaseScreen-mostPopular">
-                Recommended
-            </div>
-        </div>
-        <div className="PurchaseScreen-card-holder">
-            <div className="PurchaseScreen-card">
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={{ fontSize: '18px', fontWeight: '700' }}>Hobbyist</h3>
-                    <p style={
-                            {fontSize: '14px'}
-                        }
-                        className="PurchaseScreen-list-black">Quickly generate articles</p>
-                    <div className="PurchaseScreen-list">
-                        <div className="PurchaseScreen-list-item">
-                            <p><span className="text-brandColor text-xl">&#10003;</span> 3 Articles / Day</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Keyword generation </p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Images</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Post directly to Wordpress</p>
+
+    const tiers = [
+        {
+          name: 'Hobbyist',
+          id: 'tier-hobbyist',
+          href: () => {},
+          priceMonthly: 'Free',
+          description: 'Quickly expiriment generating quality articles.',
+          features: ['3 Articles / Day', 'Keyword generation', 'Images', 'Post to Wordpress & Blogger.com'],
+          mostPopular: false,
+          buttonText: ''
+        },
+        {
+          name: 'Professional',
+          id: 'tier-Professional',
+          href: payment,
+          priceMonthly: '$30',
+          description: `Scale your business's traffic with sophisticated SEO.`,
+          features: [
+            '450 Articles / Month',
+            'Articles will build on each other with internal linking',
+            'Run continously to build a large site',
+            'Everything in Hobbyist',
+            'Coming soon: Niche research'
+          ],
+          mostPopular: true,
+          buttonText: 'Hire agent'
+        },
+        {
+          name: 'Enterprise',
+          id: 'tier-enterprise',
+          href: enterpriseLetsChat,
+          priceMonthly: 'Contact us',
+          description: 'Blanket a whole niche.',
+          features: [
+            'Pay on per Article basis',
+            'Tailored workflow for your business',
+            '1-1 customer support',
+            'Everything in Professional',
+          ],
+          mostPopular: false,
+          buttonText: 'Let\'s chat'
+        },
+    ]
+
+    return (
+        <div className={classNames('PurchaseScreen', dark && 'dark')}>
+            <div className="bg-white">
+                <div className="mx-auto max-w-7xl px-12 dark:bg-mainDark">
+                    <div className="mx-auto max-w-4xl text-center">
+                    <h2 className="text-base font-semibold leading-7 text-brandColor-600">Pricing</h2>
+                    <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+                        Supercharge your web traffic
+                    </p>
+                    </div>
+                    <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600 dark:text-gray-50">
+                    Hire an AI agent that works autonomously to rank you highly on Google
+                    </p>
+                    <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    {tiers.map((tier, tierIdx) => (
+                        <div
+                        key={tier.id}
+                        className={classNames(
+                            tier.mostPopular ? 'lg:z-10 lg:rounded-b-none' : 'lg:mt-8',
+                            tierIdx === 0 ? 'lg:rounded-r-none' : '',
+                            tierIdx === tiers.length - 1 ? 'lg:rounded-l-none' : '',
+                            'flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10 dark:ring-white dark:bg-mainDark'
+                        )}
+                        >
+                        <div>
+                            <div className="flex items-center justify-between gap-x-4">
+                            <h3
+                                id={tier.id}
+                                className={classNames(
+                                tier.mostPopular ? 'text-brandColor-600' : 'text-gray-900 dark:text-white',
+                                'text-lg font-semibold leading-8'
+                                )}
+                            >
+                                {tier.name}
+                            </h3>
+                            {tier.mostPopular ? (
+                                <p className="rounded-full bg-brandColor-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-brandColor-600">
+                                Most popular
+                                </p>
+                            ) : null}
+                            </div>
+                            <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-white">{tier.description}</p>
+                            <p className="mt-6 flex items-baseline gap-x-1">
+                            {tier.id !== 'tier-enterprise' && <span className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{tier.priceMonthly}</span>}
+                            {tier.id !== 'tier-hobbyist' && <span className="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-50">
+                                {tier.id === 'tier-enterprise' ? 'Contact Us' : '/month'}
+                            </span>}
+
+                            </p>
+                            <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600 dark:text-gray-50">
+                            {tier.features.map((feature) => (
+                                <li key={feature} className="flex gap-x-3">
+                                <CheckIcon className="h-6 w-5 flex-none text-brandColor-600" aria-hidden="true" />
+                                {feature}
+                                </li>
+                            ))}
+                            </ul>
                         </div>
-                    </div>
-                </div>
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={
-                        {
-                            fontSize: '18px',
-                            fontWeight: '700'
-                        }
-                    }>Free</h3>
-                    <div className="row w-100 align-center justify-center"
-                        style={
-                            {
-                                marginTop: '20px',
-                                height: '30px'
-                            }
-                    }>
-                        <h4 style={
-                            {
-                                fontSize: '14px',
-                                fontWeight: '600'
-                            }
-                        }>Your current agent</h4>
-                    </div>
-                </div>
-            </div>
-            <div className="PurchaseScreen-card">
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={
-                        {
-                            fontSize: '18px',
-                            fontWeight: '700'
-                        }
-                    }>Professional</h3>
-                    <p style={
-                            {fontSize: '14px'}
-                        }
-                        className="PurchaseScreen-list-black">Scale your business's traffic</p>
-                    <div className="PurchaseScreen-list">
-                        <div className="PurchaseScreen-list-item">
-                            <p><span className="text-brandColor text-xl">&#10003;</span> 450 Articles / Month</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Internal linking </p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Autonomous daily execution </p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Everything in Hobbyist</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Coming soon: keyword research</p>
-                            {/* <p><span className="text-brandColor text-xl">&#10003;</span> Coming soon: continuous, 24/7, execution</p> */}
+                        {tier.buttonText &&<button
+                            onClick={tier.href}
+                            aria-describedby={tier.id}
+                            className={classNames(
+                            tier.mostPopular
+                                ? 'bg-brandColor-600 text-white shadow-sm hover:bg-brandColor-500'
+                                : 'text-brandColor-600 ring-1 ring-inset ring-brandColor-200 hover:ring-brandColor-300',
+                            'mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor-600'
+                            )}
+                        >
+                            {tier.buttonText}
+                        </button>}
                         </div>
-                    </div>
-                </div>
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={
-                            {
-                                fontSize: '18px',
-                                fontWeight: '700'
-                            }
-                        }
-                        className="row align-center">$30<p style={
-                            {marginLeft: '3px'}
-                        }>/</p>
-                        <p style={
-                            {marginLeft: '3px'}
-                        }>month</p>
-                    </h3>
-                    <div className="row w-100 align-center justify-center"
-                        style={
-                            {
-                                marginTop: '20px',
-                                height: '30px'
-                            }
-                    }>
-                        <button onClick={payment}>Hire</button>
-                    </div>
-                </div>
-            </div>
-            <div className="PurchaseScreen-card">
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={
-                        {
-                            fontSize: '18px',
-                            fontWeight: '700'
-                        }
-                    }>Enterprise</h3>
-                    <p style={
-                            {fontSize: '14px'}
-                        }
-                        className="PurchaseScreen-list-black">Blanket a whole niche</p>
-                    <div className="PurchaseScreen-list">
-                        <div className="PurchaseScreen-list-item">
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Pay on per Article basis</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Tailored workflow for your business</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> 1-1 customer support</p>
-                            <p><span className="text-brandColor text-xl">&#10003;</span> Everything in Professional</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="column w-100 align-start justify-start">
-                    <h3 style={
-                        {
-                            fontSize: '18px',
-                            fontWeight: '700'
-                        }
-                    }>Let's Talk</h3>
-                    <div className="row w-100 align-center justify-center"
-                        style={
-                            {
-                                marginTop: '20px',
-                                height: '30px'
-                            }
-                    }>
-                        <button id='PurchaseScreen-button-contact'
-                            onClick={
-                                () => {
-                                    const recipient = "patrick@langface.ai"
-                                    const subject = encodeURIComponent("Hello 👋");
-                                    const body = encodeURIComponent(
-                                      "Hey Patrick,\n\nI'd love to hear more about SEO with langface.ai. What's your availability this week?"
-                                    );
-                                    const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
-                                    window.open(mailtoLink, "_blank");
-                                }
-                        }>Contact</button>
+                    ))}
                     </div>
                 </div>
             </div>
         </div>
-    </div>);
+    )
 };
 
 export default PurchaseScreen;

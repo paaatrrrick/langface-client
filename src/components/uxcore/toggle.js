@@ -25,7 +25,7 @@ export default function Toggle({value, setValue, text, tinyText}) {
           aria-hidden="true"
           className={classNames(
             value ? 'translate-x-5' : 'translate-x-0',
-            ' translate-y-0.5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-mainWhite shadow ring-0 transition duration-200 ease-in-out'
+            ' translate-y-0.5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
           )}
         />
       </Switch>

@@ -117,7 +117,7 @@ const App = () => {
             {currentView !== 'launch' &&  (
                 <>
                     {/* <NightToggle/> */}
-                    <div className="App-right-section">
+                    <div className={`App-right-section template-${currentView}`}>
                             <div className="flex-grow-1"/>
                             <div className="body"> 
                             {bannerMessage && <BannerMessage messageObject={bannerMessage} close={() => dispatch(actions.clearBannerMessage())}/>}
