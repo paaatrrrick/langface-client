@@ -59,12 +59,12 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
                         </svg>
             </div>
             <div className="howItWorks">
-                <AnimatedWrapper><h2 style={{color: "#212121"}} className='pt-4'>How Langface writes articles that rank highly on Google</h2></AnimatedWrapper>
+                <AnimatedWrapper><h2 style={{color: "#212121"}} className='pt-4'>How BloggerGPT Helps Your Business's Blog</h2></AnimatedWrapper>
                 <div className="howItWorksRows">
                     <div className="howIt-left">
                     <AnimatedWrapper direction='left'>
-                        <h4 className='text-xl md:text-3xl font-semibold mb-4'>Niche Research</h4>
-                        <p>Unlock the power of your business's specific market through our unique research process. We meticulously dig out valuable long-tail keywords, revealing untapped opportunities and guiding your strategic focus.</p>
+                        <h4 className='text-xl md:text-3xl font-semibold mb-4'>Data Collection &#38; SOTA Prompts</h4>
+                        <p>BloggerGPT asks you thoughtful questions to draw out your unique insights and expertise to incorporte into our state-of-the-art prompting techinques to generate original content tailored to your business. </p>
                     </AnimatedWrapper>
                     </div>
                     <AnimatedWrapper direction='right'>
@@ -90,15 +90,15 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
                     <div className="howIt-left">
                     <AnimatedWrapper direction='right'>
                         <h4 className='text-xl md:text-3xl font-semibold mb-4'>Sitemap Generation</h4>
-                        <p>Experience seamless navigation and better SEO with our intuitive sitemap design. We craft a linked architecture for your blog posts, making your website more user-friendly and information-rich.</p>
+                        <p>Experience seamless navigation and better SEO with our intuitive sitemap design. BloggerGPT crafts a linked architecture for your blog posts, making your website more user-friendly and information-rich.</p>
                     </AnimatedWrapper>
                     </div>
                 </div>
                 <div className="howItWorksRows">
                     <div className="howIt-left">
                     <AnimatedWrapper direction='left'>
-                        <h4 className='text-xl md:text-3xl font-semibold mb-4'>Post creation</h4>
-                        <p>We handle your blog posts with care, incorporating elements like headers, tables, and images for a reader-friendly experience. They're then directly posted to your blog, giving you more time to focus on growing your business. </p></AnimatedWrapper>
+                        <h4 className='text-xl md:text-3xl font-semibold mb-4'>Post Generation</h4>
+                        <p>BloggerGPT handles your blog posts with care, incorporating elements like headers, tables, and images for a reader-friendly experience. It can post them directly to your blog, giving you more time to focus on growing your business. </p></AnimatedWrapper>
                     </div>
                     <AnimatedWrapper direction='right'>
                     <img src={BlogSvg} alt="AI rearch" />
