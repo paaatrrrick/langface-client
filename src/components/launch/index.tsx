@@ -59,7 +59,7 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
                         </svg>
             </div>
             <div className="howItWorks">
-                <AnimatedWrapper><h2 style={{color: "#212121"}} className='pt-4'>How BloggerGPT Helps Your Business's Blog</h2></AnimatedWrapper>
+                <AnimatedWrapper><h2 style={{color: "#212121"}} className='pt-4'>How BloggerGPT Helps You With Blog Marketing</h2></AnimatedWrapper>
                 <div className="howItWorksRows">
                     <div className="howIt-left">
                     <AnimatedWrapper direction='left'>
