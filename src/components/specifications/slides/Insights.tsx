@@ -31,7 +31,7 @@ const Insights : React.FC<InsightsProps>= ({specs, setSpecs}) => {
 
     return (
         <div className='specificatication-inputs'>
-            <label htmlFor='subject'>What are a few things that differentiated you from other businesses in this area?</label>
+            <label htmlFor='subject'>What are a few unique pieces of expert-level insights about your product or service that you have gained through your journey in your industry?</label>
             {
                 newInsights.map((insight, index) => {
                     return ( <InsightRow key={index} insight={insight} index={index} insightChange={insightChange} removeInsight={removeInsight} />)
@@ -50,7 +50,7 @@ interface InsightRowProps {
 const InsightRow : React.FC<InsightRowProps> = ({insight, index, insightChange, removeInsight}) => {
     return (
         <div className="insights-row">
-            <input type="text" className='specificatication-inputs-input' name="insight" value={insight} placeholder=" We focus on creating products that are not only technologically advanced but also intuitive and elegant." onChange={(e) => insightChange(e, index)}/>
+            <input type="text" className='specificatication-inputs-input' name="insight" value={insight} placeholder="Modern smartphones feature dual, triple, or even quad-camera arrays. These typically include a combination of wi...de-angle, ultra-wide-angle, telephoto, and depth-sensing cameras, allowing users to capture diverse perspectives and achieve impressive optical zoom levels." onChange={(e) => insightChange(e, index)}/>
             {insight && <button onClick={() => {removeInsight(index)}} className='insights-btn x'>&times;</button>}
         </div>
     )
