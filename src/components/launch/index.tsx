@@ -90,7 +90,7 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
                     <div className="howIt-left">
                     <AnimatedWrapper direction='right'>
                         <h4 className='text-xl md:text-3xl font-semibold mb-4'>Sitemap Generation</h4>
-                        <p>Experience seamless navigation and better SEO with our intuitive sitemap design. BloggerGPT crafts a linked architecture for your blog posts, making your website more user-friendly and information-rich.</p>
+                        <p>Experience seamless navigation and better Search Engine Optimization with our intuitive sitemap design. BloggerGPT crafts a linked architecture for your blog posts, making your website more user-friendly and information-rich.</p>
                     </AnimatedWrapper>
                     </div>
                 </div>
@@ -98,7 +98,7 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
                     <div className="howIt-left">
                     <AnimatedWrapper direction='left'>
                         <h4 className='text-xl md:text-3xl font-semibold mb-4'>Post Generation</h4>
-                        <p>BloggerGPT handles your blog posts with care, incorporating elements like headers, tables, and images for a reader-friendly experience. It can post them directly to your blog, giving you more time to focus on growing your business. </p></AnimatedWrapper>
+                        <p>BloggerGPT handles your blog posts with care, incorporating elements like headers, tables, and images for a reader-friendly experience. It can post them directly to your blog, giving you more time to focus on the core of your business. </p></AnimatedWrapper>
                     </div>
                     <AnimatedWrapper direction='right'>
                     <img src={BlogSvg} alt="AI rearch" />
