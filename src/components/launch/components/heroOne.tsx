@@ -13,8 +13,8 @@ const HeroOne : React.FC<HeroOneProps> = ({demoClick}) => {
                     <div className="flex flex-col align-center justify-start md:justify-between w-full md:flex-row" style={{maxWidth: '1500px'}}>
                         <div className="w-full md:w-1/2 flex flex-col align-center justify-center">
                             <div className="w-full md:max-w-lg flex flex-col align-center justify-center">
-                                <h1 className="font-semibold text-mainDark text-3xl md:text-5xl" style={{lineHeight: '3.25rem'}}>Drive organic web traffic with optimized articles</h1>
-                                <p className="mt-15px text-xl leading-8 text-mainDar">Get hundreds of SEO articles in seconds that are specialized to grow your business, using the help of AI</p>
+                                <h1 className="font-semibold text-mainDark text-3xl md:text-4xl" style={{lineHeight: '3.25rem'}}>Run Blog Marketing on Autopilot</h1>
+                                <p className="mt-15px text-xl text-mainDark">Want to start a blog to drive organic traffic to your website? Hire an AI agent that works autonomously to help with all aspects of blog growth!</p>
                                 <div className="mt-15px flex items-center justify-center gap-x-6">
                                     <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try 3 free demo posts</button>
                                 </div>

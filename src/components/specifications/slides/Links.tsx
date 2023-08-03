@@ -51,7 +51,7 @@ const Links : React.FC<InsightsProps>= ({specs, setSpecs}) => {
     }
     return (
         <div className='specificatication-inputs'>
-            <label htmlFor='subject'>Add any urls with their descriptions to be included in each post?</label>
+            <label htmlFor='subject'>Add any urls with their descriptions to be included in each post.</label>
             {
                 newLinks.map((link, index) => {
                     return ( <LinkRow key={index} link={link} index={index} linkChange={linkChange} removelink={removelink} />)

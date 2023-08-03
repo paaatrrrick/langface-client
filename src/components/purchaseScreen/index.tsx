@@ -99,8 +99,8 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProp
           id: 'tier-hobbyist',
           href: () => {},
           priceMonthly: 'Free',
-          description: 'Quickly expiriment generating quality articles.',
-          features: ['3 Articles / Day', 'Keyword generation', 'Images', 'Post to Wordpress & Blogger.com'],
+          description: 'Demo & get high-quality articles, fast.',
+          features: ['3 Articles / Day', 'Standard on-page SEO', 'Keyword generation', 'Images', 'Post to Wordpress & Blogger.com'],
           mostPopular: false,
           buttonText: ''
         },
@@ -109,10 +109,10 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProp
           id: 'tier-Professional',
           href: payment,
           priceMonthly: '$30',
-          description: `Scale your business's traffic with sophisticated SEO.`,
+          description: `Scale your blog over a period of time.`,
           features: [
             '450 Articles / Month',
-            'Articles will build on each other with internal linking',
+            'Internal links for optimal sitemap',
             'Run continously to build a large site',
             'Everything in Hobbyist',
             'Coming soon: Niche research'
@@ -148,7 +148,7 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProp
                     </p>
                     </div>
                     <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600 dark:text-gray-50">
-                    Hire an AI agent that works autonomously to rank you highly on Google
+                    Hire an AI agent that works autonomously to help you with blog marketing
                     </p>
                     <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {tiers.map((tier, tierIdx) => (
