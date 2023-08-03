@@ -173,7 +173,7 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProp
                             </h3>
                             {tier.mostPopular ? (
                                 <p className="rounded-full bg-brandColor-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-brandColor-600">
-                                Most popular
+                                Recommended
                                 </p>
                             ) : null}
                             </div>
