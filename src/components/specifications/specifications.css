@@ -87,7 +87,7 @@
 
 .specificatication-inputs-input:focus{
     outline: none;
-    border: 1px solid var(--brandColor);
+    border: 1px solid var(--brandColor) !important;
 }
 
 textarea.specificatication-inputs-input{
