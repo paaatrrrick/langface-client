@@ -47,7 +47,6 @@ const PurchaseScreen = ({ tryDemo, openDemo, launch, dark } : PurchaseScreenProp
         try {
             result = await signInWithPopup(auth, provider);
         } catch (err) {
-            console.log(err);
             dispatch(setBannerMessage({type: "error", message: "Error logging in with google"}));
             return false;
         }

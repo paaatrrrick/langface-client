@@ -64,6 +64,7 @@ const App = () => {
             return;
         }
         const data = await res.json();
+        data.blogs?.forEach((blog: any) => { blog.data = blog.messages; delete blog.messages;});
         dispatch(actions.login({blogs: data.blogs, user: data.user}));
         const blogIds = data.blogs.map((blog: { _id: string }) => blog._id);
         joinRoom(blogIds);

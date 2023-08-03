@@ -270,7 +270,7 @@ const slice = createSlice({
       state.blogAgents[blogId].data.push(data);
       if (postsLeftToday === 0) {
         state.blogAgents[blogId].postsLeftToday = 0
-      // } else {
+      } else {
         state.blogAgents[blogId].postsLeftToday = postsLeftToday || state.blogAgents[blogId].postsLeftToday;
       }
       state.blogAgents[blogId].maxNumberOfPosts = maxNumberOfPosts || state.blogAgents[blogId].maxNumberOfPosts;
