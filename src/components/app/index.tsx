@@ -4,10 +4,9 @@ import HtmlModal from "../htmlModal";
 import {useDispatch, useSelector} from 'react-redux';
 import { isAuthenticatedResponse} from '../../utils/getJwt';
 import constants from '../../constants';
-import { actions, DefaultBlogAgent, BannerMessage as BannerMessageType, RootState } from '../../store';
+import { actions, DefaultBlogAgent, BannerMessage as BannerMessageType, RootState, reduxHelpers } from '../../store';
 import {getUserAuthToken} from '../../utils/getJwt';
 import {setColorScheme} from '../../utils/styles';
-import {hasNonDemoBlog} from '../../utils/helpers';
 import NavController from '../navController';
 import BannerMessage from '../bannerMessage';
 import Home from '../home';
@@ -105,7 +104,7 @@ const App = () => {
     // });
 
 
-    const isAuthorized = hasNonDemoBlog(blogAgents);
+    const isAuthorized = useSelector(reduxHelpers.isAuthorized);
     if(isAuthorized && currentView === 'launch') dispatch(actions.setCurrentView('home')); 
     //@ts-ignore
     const Component = templateMap[currentView] || Home;
