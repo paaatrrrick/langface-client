@@ -56,7 +56,7 @@ const Launch : React.FC<LaunchProps> = ({launch}) => {
             <div className="custom-shape-divider-bottom-1689906032">
                         <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                             <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" className="shape-fill"></path>
-                        </svg>
+                         </svg>
             </div>
             <div className="howItWorks">
                 <AnimatedWrapper><h2 style={{color: "#212121"}} className='pt-4'>How Langface writes articles that rank highly on Google</h2></AnimatedWrapper>

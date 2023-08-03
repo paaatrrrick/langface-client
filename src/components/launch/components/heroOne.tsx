@@ -11,11 +11,13 @@ const HeroOne : React.FC<HeroOneProps> = ({demoClick}) => {
                 </div>
                 <div className="py-32 w-full flex col align-center justify-center px-3 md:flex-row">
                     <div className="flex flex-col align-center justify-start md:justify-between w-full md:flex-row" style={{maxWidth: '1500px'}}>
-                        <div className="w-full md:w-2/5">
-                            <h1 className="font-semibold tracking-tight text-mainDark text-2xl md:text-4xl" style={{lineHeight: '60px'}}>Drive organic web traffic with optimized articles</h1>
-                            <p className="mt-15px text-xl leading-8 text-mainDar">Get hundreds of SEO articles in seconds that are specialized to grow your business, using the help of AI</p>
-                            <div className="mt-15px flex items-center justify-center gap-x-6">
-                                <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try 3 free demo posts</button>
+                        <div className="w-full md:w-1/2 flex flex-col align-center justify-center">
+                            <div className="w-full md:max-w-lg flex flex-col align-center justify-center">
+                                <h1 className="font-semibold text-mainDark text-3xl md:text-5xl" style={{lineHeight: '3.25rem'}}>Drive organic web traffic with optimized articles</h1>
+                                <p className="mt-15px text-xl leading-8 text-mainDar">Get hundreds of SEO articles in seconds that are specialized to grow your business, using the help of AI</p>
+                                <div className="mt-15px flex items-center justify-center gap-x-6">
+                                    <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try 3 free demo posts</button>
+                                </div>
                             </div>
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col align-center justify-center md:justify-start" style={{height: '600px'}}>
