@@ -19,9 +19,9 @@ const HeroOne : React.FC<HeroOneProps> = ({demoClick}) => {
                                     <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try 3 free demo posts</button>
                                 </div>
                             </div>
-                            <div className="mt-15px flex items-center justify-center gap-x-6">
+                            {/* <div className="mt-15px flex items-center justify-center gap-x-6">
                                 <iframe width="420" height="315" src="https://www.youtube.com/embed/qV-Qc_tDBfc"></iframe>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="w-full md:w-1/2 flex flex-col align-center justify-center md:justify-start" style={{height: '600px'}}>
                             <HTML/>
