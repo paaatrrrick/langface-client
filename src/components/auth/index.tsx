@@ -37,7 +37,6 @@ const Auth = ({ launch, mask, payment } : AuthProps)  => {
         try {
             result = await signInWithPopup(auth, provider);
         } catch (err) {
-            console.log(err);
             dispatch(actions.setBannerMessage({type: "error", message: "Error logging in with google"}));
             return;
         }

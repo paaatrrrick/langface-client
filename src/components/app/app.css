@@ -212,37 +212,37 @@ img {
     height: 100%;
 }
 
-.Tutorial h1, .Home h1{
+.Tutorial h1, .Home h1, .Settings h1{
     font-size: 32px;
     font-weight: 600;
     color: var(--mainDark);
 }
 
-.Tutorial h3, .Home h3{
+.Tutorial h3, .Home h3, .Settings h3{
     font-size: 14px;
     font-weight: 700;
     color: var(--mainDark);
 }
 
-.Tutorial h4, .Home h4 {
+.Tutorial h4, .Home h4, .Settings h4 {
     font-size: 16px;
     font-weight: 500;
     color: var(--lightDark);
 }
 
-.Tutorial h6, .Home h6{
+.Tutorial h6, .Home h6, .Settings h6{
     font-size: 16px;
     font-weight: 300;
     color: var(--lightDark);
 }
 
-.Tutorial p, .Home p{
+.Tutorial p, .Home p, .Settings p{
     font-size: 14px;
     font-weight: 400;
     color: var(--lightDark);
 }
 
-.Tutorial a, .Home a{
+.Tutorial a, .Home a {
     font-size: 14px;
     font-weight: 400;
     color: var(--lightDark);

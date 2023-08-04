@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './specifications.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { actions, RootState } from '../../store';
+import { actions, RootState, DefaultBlogAgent } from '../../store';
 import Name from './slides/Name';
 import ValueProposition from './slides/ValueProposition';
 import Insights from './slides/Insights';
@@ -9,8 +9,6 @@ import Links from './slides/Links';
 import Loader from "../uxcore/loader";
 import constants from "../../constants";
 import { getUserAuthToken } from "../../utils/getJwt";
-
-
 
 const inputsArray = [
     Name,
@@ -26,14 +24,22 @@ interface SpecificationsProps {
 
 const Specifications = ({dontShowTopSave, closeOnSave} : SpecificationsProps) => {
     const dispatch = useDispatch();
+    const [reset, setReset] = useState<number>(1);
     const [currentSlide, setCurrentSlide] = useState(0);
     const activeBlogAgent = useSelector((state : RootState) => state.main.activeBlogAgent);
     const blogAgents = useSelector((state : RootState) => state.main.blogAgents);
-    const currentBlog = blogAgents[activeBlogAgent];
+    const isLoggedIn = useSelector((state : RootState) => state.main.isLoggedIn);
+    const currentBlog : DefaultBlogAgent = blogAgents[activeBlogAgent];
     const businessData = currentBlog.businessData;
     const [specs, setSpecs] = useState(businessData);
     const [loading, setLoading] = useState<boolean>(false);
     const fields = Object.keys(specs);
+
+    // useEffect(() => {
+    //     setReset(reset + 1);
+    //     console.log('hitting this use effect')
+    //     console.log(activeBlogAgent);
+    // }, [activeBlogAgent]);
 
     const updateSpecsOnSlideChange = async (direction : string, final : boolean) : Promise<void> => {
         const changes = {};
@@ -70,7 +76,12 @@ const Specifications = ({dontShowTopSave, closeOnSave} : SpecificationsProps) =>
 
     const moveSlide = (direction : string, final : boolean) : void => {
         if (final && closeOnSave) {
-            dispatch(actions.updateBlogAgent({id : activeBlogAgent, settingUp: false}));
+            if (currentSlide === 0 ) {
+                dispatch(actions.updateBlogAgent({id : activeBlogAgent, settingUp: true}));
+                dispatch(actions.setCurrentView(`${isLoggedIn ? "settings" : "launch"}`));
+            } else {
+                dispatch(actions.updateBlogAgent({id : activeBlogAgent, settingUp: false}));
+            }
         } else if (final) {
             dispatch(actions.updateBlogAgent({id : activeBlogAgent, settingUp: false}));
             dispatch(actions.setCurrentView("home"));        
@@ -91,11 +102,11 @@ const Specifications = ({dontShowTopSave, closeOnSave} : SpecificationsProps) =>
             <h2 className='text-2xl'>Tell us about your business</h2>
             {!loading && <Components specs={specs} setSpecs={setSpecs}/>}
             {loading && <div className="abs-center"><Loader/></div>}
-            {(!dontShowTopSave && currentSlide !== (inputsArray.length  - 1)) && <button onClick={() => {updateSpecsOnSlideChange("forward", false)}} className='specs-saveBtn' disabled={(loading || !canGoNext)}>Save</button>}
-            {(dontShowTopSave && currentSlide !== 0) && 
+            {(!dontShowTopSave && currentSlide !== (inputsArray.length  - 1)) && <button onClick={() => {updateSpecsOnSlideChange("forward", false)}} className='specs-saveBtn' disabled={loading}>Save</button>}
+            {(dontShowTopSave) && 
             <button onClick={() => {updateSpecsOnSlideChange('nil', true)}} 
-            className='absolute top-5 right-5 rounded-full bg-light2 w-8 h-8 bg-l-l2 text-center hover:bg-b2 hover:text-brandColor' 
-            disabled={(loading || !canGoNext)}>&times;</button>}
+            className='absolute top-5 right-5 rounded-full bg-light2 w-8 h-8 bg-l-l2 text-center hover:bg-b2 hover:text-brandColor hover:bg-l-b2' 
+            disabled={loading}>&times;</button>}
             {(currentSlide == (inputsArray.length  - 1)) && <button onClick={() => {updateSpecsOnSlideChange('', true)}}className='app-btn1 spec-move-forward' disabled={(loading || !canGoNext)}>Save</button>}
             {(currentSlide !== 0) && <button className='app-btn1 spec-move-back' disabled={loading} onClick={() => {updateSpecsOnSlideChange("back", false)}}>Back</button>}
             {(currentSlide !== (inputsArray.length  - 1)) && <button className='app-btn1 spec-move-forward' disabled={(loading || !canGoNext)} onClick={() => {updateSpecsOnSlideChange("forwards", false)}}>Next</button>}

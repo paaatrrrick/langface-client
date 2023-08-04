@@ -104,6 +104,10 @@ export type State = {
   blogAgents: Record<string, DefaultBlogAgent>
 };
 
+export type ReduxState = {
+  main: State
+};
+
 
 const defaultBlogAgent: DefaultBlogAgent = {
     businessData: {
@@ -145,15 +149,15 @@ const slice = createSlice({
   name: "main",
   initialState,
   reducers: {
-    setHtmlModal: (state, action) => {
+    setHtmlModal: (state : State, action : PayloadAction<string>) => {
       state.htmlModal = action.payload;
     },
-    setBlogIds (state, action) {
+    setBlogIds (state : State, action : PayloadAction<string[]>) {
       const res = [...state.blogIds, ...action.payload];
       //remove duplicates without using a set
       state.blogIds = res.filter((item, index) => res.indexOf(item) === index);
     },
-    addBlogAgent: (state, action: PayloadAction<AddBlogAgentPayload>) => {
+    addBlogAgent: (state : State, action: PayloadAction<AddBlogAgentPayload>) => {
       const { version, maxNumberOfPosts, postsLeftToday, daysLeft, loops, jwt, blogID, messages, _id, businessData, includeAIImages, dropDownTitle, demo } = action.payload;
       const tempBlog: DefaultBlogAgent = {
         version: version || "html",
@@ -174,10 +178,10 @@ const slice = createSlice({
       state.blogAgents[_id] = tempBlog;
       state.activeBlogAgent = _id;
     },
-    setActiveBlogAgent: (state, action: PayloadAction<string>) => {
+    setActiveBlogAgent: (state : State, action: PayloadAction<string>) => {
       state.activeBlogAgent = action.payload;
     },
-    updatebusinessData: (state, action) => {
+    updatebusinessData: (state : State, action) => {
       state.blogAgents[state.activeBlogAgent].businessData = {...state.blogAgents[state.activeBlogAgent].businessData, ...action.payload};
     },
     login: (state, action: PayloadAction<LoginPayload>) => {
@@ -217,18 +221,18 @@ const slice = createSlice({
       }
       return {...state, isLoggedIn: true, blogAgents: blogMap, user: user, activeBlogAgent: Object.keys(blogMap)[0], showSideBar: true}
     },    
-    toggleSideBar: (state, action) => {
+    toggleSideBar: (state : State, action : PayloadAction<boolean>) => {
       if (action.payload !== undefined) {
         state.showSideBar = action.payload;
       } else {
         state.showSideBar = !state.showSideBar;
       }
     },
-    setVersion: (state, action) => {
+    setVersion: (state : State, action : PayloadAction<{activeBlogAgent: string, version : string}>) => {
       const { activeBlogAgent, version } = action.payload;
       state.blogAgents[activeBlogAgent].version = version;
     },
-    signOut: (state) => {
+    signOut: (state : State) => {
       deleteCookie();
       state.isLoggedIn = false;
       state.user = {};
@@ -237,21 +241,21 @@ const slice = createSlice({
       state.currentView = 'launch';
       state.showSideBar = false;
     },
-    setBannerMessage: (state, action: PayloadAction<BannerMessage>) => {
+    setBannerMessage: (state : State, action: PayloadAction<BannerMessage>) => {
       state.bannerMessage = action.payload;
     },
-    clearBannerMessage: (state) => {
+    clearBannerMessage: (state : State) => {
       state.bannerMessage = null;
     },
-    setCurrentView: (state, action) => {
+    setCurrentView: (state : State, action : PayloadAction<string>) => {
       state.bannerMessage = null;
       state.currentView = action.payload;
     },
-    updateBlogAgent (state, action) {
+    updateBlogAgent (state : State, action) {
       const { id } = action.payload;
       state.blogAgents[id] = {...state.blogAgents[id], ...action.payload};
     },
-    updateBlogAgentData: (state, action) => {
+    updateBlogAgentData: (state : State, action) => {
       const { blogId, type, title, url, html, tree, config, postsLeftToday, maxNumberOfPosts, hasStarted, daysLeft } = action.payload;
       const data = { type, title, url, config, html, tree };
     
@@ -270,13 +274,13 @@ const slice = createSlice({
       state.blogAgents[blogId].data.push(data);
       if (postsLeftToday === 0) {
         state.blogAgents[blogId].postsLeftToday = 0
-      // } else {
+      } else {
         state.blogAgents[blogId].postsLeftToday = postsLeftToday || state.blogAgents[blogId].postsLeftToday;
       }
       state.blogAgents[blogId].maxNumberOfPosts = maxNumberOfPosts || state.blogAgents[blogId].maxNumberOfPosts;
     },
 
-    initializeBlogAgent: (state, action) => {
+    initializeBlogAgent: (state : State, action) => {
       const { maxNumberOfPosts, postsLeftToday, daysLeft, loops, jwt, blogID, version, dropDownTitle, demo, _id, businessData, includeAIImages } = action.payload;
       const mapActualsTooInputs : DefaultBlogAgent = { maxNumberOfPosts, daysLeft, loops, jwt, blogID, version, dropDownTitle, demo, data: [], hasStarted: true, postsLeftToday, businessData, includeAIImages};
       if (!state.blogAgents[_id]) {
@@ -288,10 +292,35 @@ const slice = createSlice({
   },
 });
 
+
+const isAuthorized = (state : ReduxState): boolean => {
+  const { blogAgents } = state.main;
+  let res = false;
+  // cast object to array
+  const blogArray = Object.values(blogAgents);
+  console.log(blogArray);
+  blogArray.forEach(blog => {
+      if (!blog.demo) {
+          res = true;
+      }
+  });
+  return res;
+}
+
+
+type ReduxHelpers = {
+  isAuthorized: (state: ReduxState) => boolean
+}
+
+
+
+
+
 // Now we configure the store
 const store = configureStore({ reducer: { main: slice.reducer } });
 export default store;
 export const actions = { ...slice.actions};
+export const reduxHelpers : ReduxHelpers = { isAuthorized };
 export const { setBannerMessage, setBlogIds, clearBannerMessage, setVersion, setCurrentView, updateBlogAgentData, login, signOut, setActiveBlogAgent, initializeBlogAgent, addBlogAgent, setHtmlModal } = slice.actions;
 
 

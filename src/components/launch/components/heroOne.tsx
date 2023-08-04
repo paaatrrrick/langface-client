@@ -11,11 +11,13 @@ const HeroOne : React.FC<HeroOneProps> = ({demoClick}) => {
                 </div>
                 <div className="py-32 w-full flex col align-center justify-center px-3 md:flex-row">
                     <div className="flex flex-col align-center justify-start md:justify-between w-full md:flex-row" style={{maxWidth: '1500px'}}>
-                        <div className="w-full md:w-2/5">
-                            <h1 className="font-semibold tracking-tight text-mainDark text-2xl md:text-4xl" style={{lineHeight: '60px'}}>Blog Marketing Made Easy</h1>
-                            <p className="mt-15px text-xl leading-8 text-mainDar">Want to start a blog to drive organic traffic to your website? Hire an AI agent that works autonomously to help with all aspects of blog growth!</p>
-                            <div className="mt-15px flex items-center justify-center gap-x-6">
-                                <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try Demo</button>
+                        <div className="w-full md:w-1/2 flex flex-col align-center justify-center">
+                            <div className="w-full md:max-w-lg flex flex-col align-center justify-center">
+                                <h1 className="font-semibold text-mainDark text-3xl md:text-4xl" style={{lineHeight: '3.25rem'}}>Run Blog Marketing on Autopilot</h1>
+                                <p className="mt-15px text-xl text-mainDark">Want to start a blog to drive organic traffic to your website? Hire an AI agent that works autonomously to help with all aspects of blog growth!</p>
+                                <div className="mt-15px flex items-center justify-center gap-x-6">
+                                    <button onClick={demoClick} className="rounded-full w-60 h-10 bg-brandColor px-3.5 text-m text-center font-sm text-white">Try 3 free demo posts</button>
+                                </div>
                             </div>
                             <div className="mt-15px flex items-center justify-center gap-x-6">
                                 <iframe width="420" height="315" src="https://www.youtube.com/embed/qV-Qc_tDBfc"></iframe>
