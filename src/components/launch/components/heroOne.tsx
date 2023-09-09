@@ -17,7 +17,7 @@ const HeroOne : React.FC<HeroOneProps> = ({demoClick}) => {
                                 <p className="mt-15px text-xl text-mainDark">Want to start a blog to drive organic traffic to your website? Hire an AI agent that works autonomously to help with all aspects of blog growth!</p>
                                 <div className="mt-15px flex items-center justify-center gap-x-6">
                                     <button onClick={demoClick} className="rounded-full py-2 bg-brandColor px-6 text-m text-center font-sm text-white">Try 3 free posts</button>
-                                    <a href="https://www.youtube.com/watch?v=qV-Qc_tDBfc" target="_blank" className="flex align-middle py-2 px-10 justify-center rounded-full bg-transparent border-brandColor border border-solid text-m font-sm text-brandColor text-center">Watch Video <span className="ml-3">▶</span></a>
+                                    {/* <a href="https://www.youtube.com/watch?v=qV-Qc_tDBfc" target="_blank" className="flex align-middle py-2 px-10 justify-center rounded-full bg-transparent border-brandColor border border-solid text-m font-sm text-brandColor text-center">Watch Video <span className="ml-3">▶</span></a> */}
                                 </div>
                                 {/* <div className="mt-15px flex items-center justify-center gap-x-6">
                                 </div> */}
